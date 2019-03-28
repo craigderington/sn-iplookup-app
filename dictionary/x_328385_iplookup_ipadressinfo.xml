@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="IPAddressInfo" max_length="40" name="x_328385_iplookup_ipadressinfo" type="collection">
         <element label="City" max_length="40" name="city" type="string"/>
+        <element label="country" max_length="40" name="country" type="string"/>
+        <element label="country name" max_length="40" name="country_name" type="string"/>
         <element label="IP address" max_length="40" name="ip_address" type="string"/>
+        <element label="latitude" max_length="40" name="latitude" type="float"/>
+        <element label="longitude" max_length="40" name="longitude" type="float"/>
+        <element label="Postal Code" max_length="40" name="postal_code" type="string"/>
+        <element label="region" max_length="40" name="region" type="string"/>
+        <element label="timezone" max_length="40" name="timezone" type="string"/>
     </element>
 </database>
