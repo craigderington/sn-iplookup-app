@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="" label="IPInfo Configuration" language="en" table="x_328385_iplookup_ipinfo_config">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>IPInfo Configuration</label>
+            <language>en</language>
+            <name>x_328385_iplookup_ipinfo_config</name>
+            <plural>IPInfo Configurations</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-21 20:40:57</sys_created_on>
+            <sys_id>3669b43bdb8e7300346ddde74896199f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>IPInfo Configuration</sys_name>
+            <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
+            <sys_update_name>sys_documentation_x_328385_iplookup_ipinfo_config__en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-21 20:40:57</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

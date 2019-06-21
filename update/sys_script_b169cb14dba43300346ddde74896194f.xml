@@ -28,36 +28,7 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
-
-	// Add your code here
-	 try { 
-		 var r = new sn_ws.RESTMessageV2('x_328385_iplookup.IPInfo', 'Default GET');
-		 r.setStringParameterNoEscape('ipaddress', current.ip_address);	
-
-		 var response = r.execute();
-		 var responseBody = response.getBody();
-		 // for debugging 
-		 // gs.info("IP response body " + responseBody);
-		 var httpStatus = response.getStatusCode();
-		 
-		 if (httpStatus == '200') {
-			 var responseObj = JSON.parse(responseBody);
-			 current.city = responseObj.city;
-			 current.region = responseObj.region;
-			 current.country = responseObj.country;
-			 current.country_name = responseObj.country_name;
-			 current.timezone = responseObj.timezone;
-			 current.latitude = responseObj.latitude;
-			 current.longitude = responseObj.longitude;
-			 current.postal_code = responseObj.postal;
-			 // gs.info("City = " + current.city);
-			 current.update();
-		 }
-	 }
-	 catch(err) {
-	    gs.info("Uncaught Error: " + err);
-	}
-
+	return new IPInfoAPI().geoLocate(current, previous);
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -65,7 +36,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b169cb14dba43300346ddde74896194f</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Populate IP Address City</sys_name>
         <sys_overrides/>
         <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
@@ -73,7 +44,7 @@
         <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
         <sys_update_name>sys_script_b169cb14dba43300346ddde74896194f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-04-01 14:26:20</sys_updated_on>
+        <sys_updated_on>2019-06-21 20:32:55</sys_updated_on>
         <template/>
         <when>async</when>
     </sys_script>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_328385_iplookup.IPInfoUtil</api_name>
+        <client_callable>false</client_callable>
+        <description>Utility Class Functions for the IPInfo App</description>
+        <name>IPInfoUtil</name>
+        <script><![CDATA[var IPInfoUtil = Class.create();
+IPInfoUtil.prototype = {
+	initialize: function() {
+		this.debug = false;
+	},
+	
+	getScopedAppPrefix: function() {
+		return this.getValue("scopedAppPrefix");
+	},
+	
+	getLogPrefix: function() {
+		return this.getValue("logMsgPrefix");
+	},
+	
+	getValue: function(key) {
+		return this._getGlideRecordValue(key, "value");
+	},
+	
+	getEncryptedValue: function(key) {
+		return this._getGlideRecordValue(key, "encryptedValue");
+	},
+	
+	getDateTimeUtils: function(datetimenano) {
+		// Convert to milliseconds first
+		var ms = datetimenano / 1000;
+		var seconds = ms / 1000;
+		
+		// Create a GlideDateTime object
+		var gdt = new GlideDateTime();
+		gdt.subtract(ms); // Resets the date to 0 so that we can add the milliseconds to the date
+		
+		var datetransform = gdt.getValue();
+		return datetransform;
+	},
+	
+	_getGlideRecordValue: function(key, field) {
+		var returnValue;
+		var gr = new GlideRecordSecure("x_328385_iplookup_ipinfo_config");
+		gr.addQuery("key", key);
+		gr.query();
+		if (gr.getRowCount() === 1) {
+			gr.next();
+			if (field.match("value")) {
+				returnValue = gr.value;
+			} else if (field.match("encryptedValue")) {
+				returnValue = gr.encrypted_value.getDecryptedValue();
+			}
+		}
+		return returnValue;
+	},
+	
+	getTableName: function(table) {
+		var tableArray = {
+			"ipaddress": "ipadressinfo"
+		};
+		
+		return this.getScopedAppPrefix() + tableArray[table];
+	},	
+	
+	setSleep: function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds){
+				break;
+			}
+		}
+	},
+	
+	type: 'IPInfoUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-21 20:41:08</sys_created_on>
+        <sys_id>96e7b8b7db8e7300346ddde748961969</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>IPInfoUtil</sys_name>
+        <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
+        <sys_update_name>sys_script_include_96e7b8b7db8e7300346ddde748961969</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-21 20:48:24</sys_updated_on>
+    </sys_script_include>
+</record_update>

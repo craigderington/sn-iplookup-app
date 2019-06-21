@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_328385_iplookup.IPInfoAPI</api_name>
+        <client_callable>false</client_callable>
+        <description>Script Include functions and methods</description>
+        <name>IPInfoAPI</name>
+        <script><![CDATA[var IPInfoAPI = Class.create();
+IPInfoAPI.prototype = {
+	initialize: function() {
+		this.util = new IPInfoUtil();
+		this.msgPrefix = this.util.getLogPrefix();
+		this.tableName = this.util.getTableName("ipaddress");
+	},
+	
+	geoLocate: function(current, previous) {
+		// Add your code here
+		try {
+			var r = new sn_ws.RESTMessageV2('x_328385_iplookup.IPInfo', 'Default GET');
+			r.setStringParameterNoEscape('ipaddress', current.ip_address);
+			
+			var response = r.execute();
+			var responseBody = response.getBody();
+			// for debugging
+			// gs.info("IP response body " + responseBody);
+			var httpStatus = response.getStatusCode();
+			
+			if (httpStatus == '200') {
+				var responseObj = JSON.parse(responseBody);
+				
+				if (responseObj.country === 'US') {
+					current.ip_address = responseObj.ip;
+					current.city = responseObj.city;
+					current.region = responseObj.region;
+					current.country = responseObj.country;
+					current.country_name = responseObj.country_name;
+					current.timezone = responseObj.timezone;
+					current.latitude = responseObj.latitude;
+					current.longitude = responseObj.longitude;
+					current.postal_code = responseObj.postal;
+					gs.info("Added Location to IPInfo: " + current.city + ", " + current.country_name);
+					current.update();
+				}
+			}
+		}
+		// catch exceptions
+		catch (ex) {
+			var msg = ex.message;
+			gs.info("IP INFO API :: ERROR :: " + msg);
+		}
+	},
+	
+	deleteEmptyGeoLocatedData: function() {
+		try {
+			var gr = new GlideRecordSecure(this.tableName);
+			gr.addNullQuery("latitude");
+			gr.addNullQuery("longitude");
+			gr.query();
+			
+			var counter = gr.getRowCount();
+			
+			while (gr.next()) {
+				gr.deleteRecord();
+				gs.info(this.msgPrefix + " DELETED :: " + gr.sys_id);
+			}
+			
+			// log result
+			gs.info(this.msgPrefix + " Removed " + counter + " IP records for missing geo-location data");
+		}
+		
+		// catch exceptions
+		catch (ex) {
+			var msg = ex.message;
+			gs.info(this.msgPrefix + " ERROR :: " + msg);
+		}
+		
+		// return result
+		return "Deleted IPInfo ";
+	},
+	
+	// return class type
+	type: 'IPInfoAPI'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-21 20:34:13</sys_created_on>
+        <sys_id>4e9734b7db8e7300346ddde748961948</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>IPInfoAPI</sys_name>
+        <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
+        <sys_update_name>sys_script_include_4e9734b7db8e7300346ddde748961948</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-21 21:10:01</sys_updated_on>
+    </sys_script_include>
+</record_update>

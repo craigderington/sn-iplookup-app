@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>devhelloworld</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-22 16:25:32</sys_created_on>
+        <sys_id>dc9fba54dbc13300346ddde74896196d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>devhelloworld</sys_name>
+        <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
+        <sys_update_name>sp_page_dc9fba54dbc13300346ddde74896196d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-04-22 16:25:32</sys_updated_on>
+        <title>devHelloWorld - Test Page</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=dc9fba54dbc13300346ddde74896196d"/>
+</record_update>
