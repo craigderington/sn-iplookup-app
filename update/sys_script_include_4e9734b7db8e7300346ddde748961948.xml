@@ -28,7 +28,7 @@ IPInfoAPI.prototype = {
 			
 			if (httpStatus == '200') {
 				var responseObj = JSON.parse(responseBody);
-				
+				// only save the U.S. IP addresses
 				if (responseObj.country === 'US') {
 					current.ip_address = responseObj.ip;
 					current.city = responseObj.city;
@@ -41,13 +41,19 @@ IPInfoAPI.prototype = {
 					current.postal_code = responseObj.postal;
 					gs.info("Added Location to IPInfo: " + current.city + ", " + current.country_name);
 					current.update();
+				} else {
+					// log the country code if non-US IP addresses
+					gs.info(this.msgPrefix + " COUNTRY CODE :: " + responseObj.country);
 				}
+			} else {
+				// log http status code error
+				gs.info(this.msgPrefix + " HTTP Status returned code: " + httpStatus.toString());
 			}
 		}
 		// catch exceptions
 		catch (ex) {
 			var msg = ex.message;
-			gs.info("IP INFO API :: ERROR :: " + msg);
+			gs.info(this.msgPrefix + " API :: ERROR :: " + msg);
 		}
 	},
 	
@@ -86,13 +92,13 @@ IPInfoAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-06-21 20:34:13</sys_created_on>
         <sys_id>4e9734b7db8e7300346ddde748961948</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>IPInfoAPI</sys_name>
         <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
         <sys_update_name>sys_script_include_4e9734b7db8e7300346ddde748961948</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-06-21 21:10:01</sys_updated_on>
+        <sys_updated_on>2019-06-24 20:22:06</sys_updated_on>
     </sys_script_include>
 </record_update>
