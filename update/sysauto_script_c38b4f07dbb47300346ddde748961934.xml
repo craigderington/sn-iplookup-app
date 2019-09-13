@@ -11,7 +11,7 @@
         <run_period>1970-01-01 00:10:00</run_period>
         <run_start>2019-04-18 20:05:28</run_start>
         <run_time>1970-01-01 08:15:00</run_time>
-        <run_type>periodically</run_type>
+        <run_type>on_demand</run_type>
         <script><![CDATA[(function () {
 	
 	// insert a random ip to the database
@@ -37,14 +37,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-04-18 20:11:26</sys_created_on>
         <sys_id>c38b4f07dbb47300346ddde748961934</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Add Random IP to GeoLocate</sys_name>
         <sys_package display_value="IPLookup" source="x_328385_iplookup">c336cbdcdb643300346ddde748961903</sys_package>
         <sys_policy/>
         <sys_scope display_value="IPLookup">c336cbdcdb643300346ddde748961903</sys_scope>
         <sys_update_name>sysauto_script_c38b4f07dbb47300346ddde748961934</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-06-21 20:43:06</sys_updated_on>
+        <sys_updated_on>2019-09-13 13:51:30</sys_updated_on>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
 </record_update>
